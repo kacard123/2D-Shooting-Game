@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     private Vector3 playerPos;
 
     private int score;
+
+    [SerializeField]
+    private KeyCode keyCodeBoom = KeyCode.Z;
     
     public int Score
     {
@@ -95,5 +98,10 @@ public class Player : MonoBehaviour
             weapon.StopFiring();
         }
         
+        // 폭탄 키를 눌러 폭탄 생성
+        if(Input.GetKeyDown(keyCodeBoom))
+        {
+            weapon.StartBoom();
+        }
     }
 }

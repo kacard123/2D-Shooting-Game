@@ -1413,6 +1413,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   explosion: {fileID: 3928520363351309000, guid: 8ab0732c76ae2654a9eedd30849566cd, type: 3}
   keyCodeAttack: 32
+  keyCodeBoom: 122
 --- !u!212 &1474907003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1520,6 +1521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 4600721472983064814, guid: 937ee7d8ed096492481023eab912ec0d, type: 3}
   attackRate: 0.1
+  boomPrefab: {fileID: 4674550475130900717, guid: 7dc1a9096aabf1b4f8c583c907903071, type: 3}
 --- !u!95 &1474907008
 Animator:
   serializedVersion: 4

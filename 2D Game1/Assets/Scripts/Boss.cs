@@ -17,6 +17,8 @@ public class Boss : MonoBehaviour
     private Movement2D movement2D;
     private BossWeapon bossWeapon;
 
+    private Player player; // 플레이어 점수(Score) 정보에 접근하기 위해
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 발사체에 부딪힌 오브젝트의 태그가 "Player"이면
@@ -33,7 +35,31 @@ public class Boss : MonoBehaviour
     {
         movement2D = GetComponent<Movement2D>();
         bossWeapon = GetComponent<BossWeapon>();
+
+        // Tip.현재 코드에서는 한번만 호출하기 때문에 OnDie에서 바로 호출해도 되지만
+        // 오브젝트 풀링을 이용해 오브젝트를 재사용할 경우에는 최초 1번만 Find를 이용해
+        // Player의 정보를 저장해두고 사용하는 것이 연산에 효율적이다.
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
+
+    //private void OnTriggerEnter2D(Collider collision)
+    //{
+    //    // 보스에게 부딪힌 오브젝트의 태그가 "Player"이면
+    //    if(collision.CompareTag("Player"))
+    //    {
+    //        // 보스 공격력만큼 플레이어 체력 감소
+    //        collision.GetComponent<PlayerHP>().TakeDamage(damage);
+    //        // 보스 사망시 호출하는 함수
+    //        OnDie();
+    //    }
+
+    //}
+
+    //public void OnDie()
+    //{
+    //    Destroy(gameOb)
+    //}
 
     public void ChangeState(BossState newState)
     {

@@ -7,8 +7,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject textBossWarning; // ?? ?? ??? ????
-   
+    private GameObject textBossWarning; // 보스 등장 경고 메세지
+
     public GameObject boss;
 
     private GameObject player;
@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public bool isSpawnBoss = false;
 
+    [SerializeField]
+    private GameObject panelBossHP; // 보스 체력 패널 오브젝트
+
 
     private void Awake()
     {
@@ -31,9 +34,13 @@ public class GameManager : MonoBehaviour
             GameManager.instance = this;
         }
 
-        textBossWarning.SetActive(false); // ?? ?? ??? ????
+        // 보스 등장 텍스트 비활성화
+        textBossWarning.SetActive(false);
+        // 보스 오브젝트 비활성화
         boss.SetActive(false);
 
+        // 보스 체력 패널 비활성화
+        panelBossHP.SetActive(false);
     }
 
     private void Start()
@@ -90,27 +97,28 @@ public class GameManager : MonoBehaviour
         if (score >= 200 && isSpawnBoss == false)
         {
             isSpawnBoss = true;
-            StartCoroutine(SpawnBoss()); 
+            StartCoroutine(SpawnBoss());
         }
     }
 
 
     IEnumerator SpawnBoss()
     {
-            // ?? ?? ??? ???
-            textBossWarning.SetActive(true);
-            // 1? ??
-            yield return new WaitForSeconds(2.0f);
+        // 보스 등장 텍스트 활성화
+        textBossWarning.SetActive(true);
+        // 2초 대기
+        yield return new WaitForSeconds(2.0f);
 
-            // ?? ?? ??? ????
-            textBossWarning.SetActive(false);
-            // ?? ???? ???
-            boss.SetActive(true);
-
-            boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
-       
+        // 보스 등장 텍스트 비활성화
+        textBossWarning.SetActive(false);
+        // 보스 체력 패널 활성화
+        boss.SetActive(true);
+        // 보스의 첫 번째 상태인 지정된 위치로 이동 실행
+        boss.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
+        // 보스 체력 패널 활성화
+        panelBossHP.SetActive(true);
     }
 }
 
-    
+
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Rocket
+  - BossWeapon
+  - Boss
   layers:
   - Default
   - TransparentFX

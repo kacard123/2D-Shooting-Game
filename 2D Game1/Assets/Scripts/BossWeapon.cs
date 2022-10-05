@@ -71,4 +71,11 @@ public class BossWeapon : MonoBehaviour
             yield return new WaitForSeconds(attackRate);
         }
     }
+
+    public void OnDie()
+    {
+        // 보스 오브젝트 삭제
+        Destroy(gameObject);
+    }
+
 }

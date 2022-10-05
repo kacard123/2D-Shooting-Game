@@ -11,6 +11,8 @@ public class PlayerBoom : MonoBehaviour
     private float boomDealy = 0.5f; // 폭탄 이동 시간(0.5초 후 폭발)
     private Animator animator;
     private AudioSource audioSource;
+    [SerializeField]
+    private int damage = 100; // 폭탄 데미지
 
     private void Awake()
     {
@@ -50,10 +52,23 @@ public class PlayerBoom : MonoBehaviour
 
    public void OnBoom()
     {
-        // 현재 게임 내에서 "Boss" 태그를 가진 오브젝트 정보를 가져온다
-        GameObject[] boss = GameObject.FindGameObjectsWithTag("Boss");
+        // 현재 게임 내에서 존재하는 적의 발사체를 모두 파괴
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("BossWeapon");
+        for (int i = 0; i < weapons.Length; ++i)
+        {
+            weapons[i].GetComponent<BossWeapon>().OnDie();
+        }
 
+        // 현재 게임 내에서 "Boss" 태그를 가진 오브젝트 정보를 가져온다
+        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+        if (boss != null)
+        {
+            // 보스의 체력을 damage만큼 감소시킨다
+            boss.GetComponent<BossHP>().TakeDamage(damage);
+        }
+
+        // Boos 오브젝트 삭제
         Destroy(gameObject);
-        
+
     }
 }

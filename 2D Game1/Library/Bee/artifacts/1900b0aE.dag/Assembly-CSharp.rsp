@@ -376,6 +376,7 @@
 "Assets/Scripts/BackgroundCtrl.cs"
 "Assets/Scripts/Boss.cs"
 "Assets/Scripts/BossHP.cs"
+"Assets/Scripts/BossHPViewer.cs"
 "Assets/Scripts/BossWeapon.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyWeapon.cs"

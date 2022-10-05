@@ -14,6 +14,11 @@ public class Weapon : MonoBehaviour
     private GameObject boomPrefab; // 폭탄 프리팹
     private int boomCount = 3; // 생성 가능한 폭탄
 
+    public int BoomCount => boomCount;
+
+    [SerializeField]
+    private int damage = 1;
+
     public void StartBoom()
     {
         if(boomCount > 0)
@@ -77,7 +82,17 @@ public class Weapon : MonoBehaviour
         // weapon 클래스의 damage 변수에 접근할 수 있도록 설정한 후 공격력도 다르게 설정 가능
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 발사체에 부딪힌 오브젝트의 태그가 "Boss"이면
+        if(collision.CompareTag("Boss"))
+        {
+            // 부딪힌 오브젝트 체력 감소(보스)
+            collision.GetComponent<BossHP>().TakeDamage(damage);
+            // 내 오브젝트 삭제(발사체)
+            Destroy(gameObject);
+        }
+    }
 
 }
 

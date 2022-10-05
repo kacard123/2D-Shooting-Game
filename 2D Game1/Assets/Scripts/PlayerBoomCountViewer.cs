@@ -8,6 +8,7 @@ public class PlayerBoomCountViewer : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
     private TextMeshProUGUI textBoomCount;
+
     void Awake()
     {
         textBoomCount = GetComponent<TextMeshProUGUI>();
@@ -16,6 +17,6 @@ public class PlayerBoomCountViewer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //textBoomCount.text = "X " + weapon. BoomCount;
+        textBoomCount.text = "x "+weapon.BoomCount;
     }
 }
